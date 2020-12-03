@@ -8,9 +8,9 @@ public interface Trie {
 
     public boolean delete(String word);
 
-    public Iterable<String> words();
+    public Iterable<String> words() throws IllegalAccessException;
 
-    public Iterable<String> wordsWithPrefix(String pref);
+    public Iterable<String> wordsWithPrefix(String pref) throws IllegalAccessException;
     
     public int size();
 }

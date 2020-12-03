@@ -1,40 +1,45 @@
 package ua.edu.ucu.autocomplete;
 
+import ua.edu.ucu.tries.RWayTrie;
 import ua.edu.ucu.tries.Trie;
 
-/**
- *
- * @author andrii
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrefixMatches {
 
-    private Trie trie;
+    private final RWayTrie trie;
 
     public PrefixMatches(Trie trie) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.trie = (RWayTrie) trie;
     }
 
-    public int load(String... strings) {
-        throw new UnsupportedOperationException("Not supported yet.");        
+    public void load(String... strings) throws IllegalAccessException {
+        trie.addDictionary(strings);
     }
 
     public boolean contains(String word) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return trie.contains(word);
     }
 
     public boolean delete(String word) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return trie.delete(word);
     }
 
-    public Iterable<String> wordsWithPrefix(String pref) {
-        throw new UnsupportedOperationException("Not supported yet.");        
+    public Iterable<String> wordsWithPrefix(String pref){
+        return trie.wordsWithPrefix(pref);
     }
 
-    public Iterable<String> wordsWithPrefix(String pref, int k) {
-        throw new UnsupportedOperationException("Not supported yet.");        
+    public Iterable<String> wordsWithPrefix(String pref, int k){
+        List<String> list = (List<String>) trie.wordsWithPrefix(pref);
+        List<String> output = new ArrayList<>();
+        for(int i = 0; i<k+1; ++i){
+            output.add(list.get(i));
+        }
+        return output;
     }
 
     public int size() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return trie.size();
     }
 }
